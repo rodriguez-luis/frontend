@@ -7,11 +7,20 @@ import { User } from '../model/User';
   providedIn: 'root'
 })
 export class SessionService {
-  url: string = 'hhtp://localhost:8080/v1/user/';
-
+  url: string = 'http://localhost:8080/v1/user/';
+  currentUser: string ="null";
   constructor(private http: HttpClient) { }
 
-  getUser(): Observable<User> {
-    return this.http.get<User>(this.url);
+  getUser(username:string): Observable<User> {
+    return this.http.get<User>(this.url+username);
   }
+
+  getCurrentUser(): string {
+    return this.currentUser;
+  }
+
+  setSession(username:string):void{
+    this.currentUser = username;
+  }
+
 }

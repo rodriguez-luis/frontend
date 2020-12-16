@@ -1,10 +1,28 @@
 <mat-toolbar color="primary" class="top">
-    <span>Online Store</span>
-    <button mat-button routerLink="/">Inicio</button>
-    <span class="example-spacer"></span>
 
-    <button mat-button routerLink='/cart'>
-      <mat-icon class="icon">shopping_cart</mat-icon>
-    </button>
+    <span>Online Store</span>
+    <div *ngIf="type==0">
+      <button mat-button routerLink="/">Tienda</button>
+      <span class="example-spacer"></span>
+    </div>
+    <div *ngIf="type==1">
+      <button mat-button routerLink="/">Tienda</button>
+      <span class="example-spacer"></span>
+      <button mat-button routerLink='/cart'>
+        <mat-icon class="icon">shopping_cart</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="type==2">
+      <button mat-button routerLink="/">Pedidos</button>
+      <button mat-button routerLink="/">Mis ganancias</button>
+    </div>
+    <div *ngIf="type==3">
+      <button mat-button routerLink="/">Productos</button>
+      <button mat-button routerLink="/">Usuarios</button>
+      <button mat-button routerLink="/">dashboard</button>
+    </div>
+    <span class="example-spacer"></span>
+    <button *ngIf="type==0" mat-button >Ingresar</button>
+    <button *ngIf="type!=0" mat-button >Salir</button>
     <!--<mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon>-->
   </mat-toolbar>

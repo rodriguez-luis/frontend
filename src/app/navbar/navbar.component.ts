@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  type: number = 0;
+  constructor(public sessionService: SessionService) { }
 
   ngOnInit(): void {
+    this.sessionService.getUser("luisito").subscribe( user => this.type = user.privilege);
   }
-
 }
