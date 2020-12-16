@@ -22,7 +22,7 @@
       <button mat-button routerLink="/">dashboard</button>
     </div>
     <span class="example-spacer"></span>
-    <button *ngIf="type==0" mat-button >Ingresar</button>
+    <button *ngIf="type==0" mat-button (click)="login()">Ingresar</button>
     <button *ngIf="type!=0" mat-button >Salir</button>
     <!--<mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon>-->
   </mat-toolbar>
