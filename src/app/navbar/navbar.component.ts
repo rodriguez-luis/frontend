@@ -16,8 +16,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.type = + (localStorage.getItem("type") || "0");
-    this.cartService.setCart((localStorage.getItem("user")|| ""));
-    this.cartService.getProducts();
   }
 
   login(){
@@ -26,8 +24,10 @@ export class NavbarComponent implements OnInit {
     })
   }
   logout(){
+    this.router.navigate(['/store'])
+  .then(() => {
     localStorage.setItem("type","0");
-    this.router.navigateByUrl('/store');    
     window.location.reload();
+  });
   }
 }

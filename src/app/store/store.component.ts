@@ -18,6 +18,7 @@ export class StoreComponent implements OnInit {
     ,private snackBar: MatSnackBar, private router: Router ) { }
 
   ngOnInit(): void {
+    this.cartService.setCart(localStorage.getItem("user")||"");
     this.getProducts();
   }
   alert(product: Product) {

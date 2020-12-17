@@ -11,12 +11,15 @@ export class CartService {
   url: string = 'http://localhost:8080/v1/cart/';
   products: Product[] = [];
   total: number = 0;
-  cart: any;
-  constructor(private http: HttpClient) { 
-    
+  cart:any;
+  details:any;
+  
+  constructor(private http: HttpClient) {
   }
   setCart(username: string){
-    this.http.get<Cart>(this.url+username).subscribe( _ => this.cart = _);
+    this.http.get<Cart>(this.url+username).subscribe( _ => {this.cart = _;
+      this.requestProducts();
+    });
   }
   getCart(){
     return this.cart;
@@ -30,6 +33,7 @@ export class CartService {
   requestProducts(){
     this.http.get<Details[]>(this.url+'details/'+this.cart.cartId).subscribe(
       details => {
+        this.details = details;
         for (let detail of details){
           this.http.get<Product>('http://localhost:8080/v1/product/'+detail.productId).subscribe(
             product => this.products.push(product)
@@ -39,6 +43,7 @@ export class CartService {
     );
   }
   getProducts(){
+    this.requestProducts();
     return this.products;
   }
   getTotal():number{
@@ -50,12 +55,8 @@ export class CartService {
     return this.total;
   }
   deleteProduct(product: Product){
-    let temp:Product[]=[];
-    for (let x of this.products){
-      if (x.productId != product.productId){
-        temp.push(x);
-      }
-    }
-    this.products = temp;
+    this.http.patch<any>(this.url+'details/'+product.productId,{}).subscribe(
+      _ => {this.requestProducts()}
+    );
   }
 }

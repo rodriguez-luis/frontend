@@ -36,6 +36,11 @@ export class CartComponent implements OnInit {
     this.getProducts();
     this.getTotal();
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(OrderComponent,{
+      width: '640px',disableClose: true 
+    });
+  }
   alert(product: Product) {
     this.productService.setLast(product);
     const dialogRef = this.dialog.open(ProductComponent,{
