@@ -12,5 +12,5 @@ export class OrderService {
   };
   post(order: any): Observable<any>{
     return this.http.post<any>(this.url, order);
-  }}
+  }
 }

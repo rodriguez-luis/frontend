@@ -5,7 +5,7 @@ import { CartService } from '../services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductComponent } from '../product/product.component';
 import { ProductService } from '../services/product.service';
-
+import { OrderComponent} from '../order/order.component';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
