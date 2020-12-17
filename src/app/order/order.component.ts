@@ -14,7 +14,7 @@ export class OrderComponent implements OnInit {
   titleAlert: string = "This field is required";
   post: any = "";
   total: number = 0;
-  
+  address: string = "";
   constructor(private formBuilder: FormBuilder, public cartService: CartService, private dialog: MatDialog, private checkoutService: OrderService) {}
   
   ngOnInit() {
@@ -100,8 +100,13 @@ export class OrderComponent implements OnInit {
   }
   
   onSubmit(post: any) {
-    this.checkoutService.post({"cartId":1 ,"paymentDetailsId": 1, "total":this.total, "contact":post.email, "details":post.description}).subscribe(data => {this.post = "Guardado con exito!!!";});
-  
+    this.checkoutService.post({
+      "total":this.total, 
+      "address": this.address, 
+      "cartId":this.cartService.getCart().cartId, 
+      "username":localStorage.getItem("user"),
+      "deliveryBoy":"null",
+      "orderStatus":1 }).subscribe(data => {this.post = "Guardado con exito!!!";});
   }
   close(){
     this.dialog.closeAll();
