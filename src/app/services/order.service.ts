@@ -13,4 +13,7 @@ export class OrderService {
   post(order: any): Observable<any>{
     return this.http.post<any>(this.url, order);
   }
+  get():Observable<any>{
+    return this.http.get<any>(this.url);
+  }
 }
