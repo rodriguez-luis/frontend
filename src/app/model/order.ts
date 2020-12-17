@@ -1,4 +1,5 @@
 export interface Order{
+    "date": Date,
     "orderId": number,
     "total": number,
     "address": string,

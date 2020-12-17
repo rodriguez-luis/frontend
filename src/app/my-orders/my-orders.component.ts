@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../model/order';
 import { OrderService } from '../services/order.service';
-
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
@@ -9,21 +8,17 @@ import { OrderService } from '../services/order.service';
 })
 export class MyOrdersComponent implements OnInit {
   orders: Order[]=[];
-  displayedColumns: string[] = ['date', 'total', 'details'];
+  displayedColumns = ['date', 'total', 'details'];
   constructor(public orderService: OrderService) { }
 
   ngOnInit(): void {
-    this.orderService.get().subscribe( orders =>
-      {
-        for (let order of orders){
-          if (order.username == localStorage.getItem("user")){
-            this.orders.push(order);
-          }
-        }
-      }
-    );    
+    this.getOrders();
+    console.log(this.orders);
+  }
+  getOrders(){
+    this.orders = this.orderService.getOrders();
   }
   details(cartId:number){
-
+    alert("ga");
   }
 }
