@@ -15,6 +15,7 @@ import { ProductComponent } from './product/product.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OrderComponent } from './order/order.component';
     StoreComponent,
     ProductComponent,
     CartComponent,
-    OrderComponent
+    OrderComponent,
+    MyOrdersComponent
   ],
   imports: [
     BrowserModule,

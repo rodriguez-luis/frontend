@@ -55,6 +55,11 @@ export class CartService {
     }
     return this.total;
   }
+  createCart(){
+    this.http.post<any>(this.url,{"username":localStorage.getItem("user"),"cartStatus":1}).subscribe(
+      _ => {this.setCart(localStorage.getItem("user")||""); this.products = [];} 
+    );
+  }
   deleteProduct(product: Product){
     this.http.patch<any>(this.url+'details/'+product.productId,{}).subscribe(
       _ => {this.requestProducts()}

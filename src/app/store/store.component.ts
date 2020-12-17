@@ -36,6 +36,7 @@ export class StoreComponent implements OnInit {
   addToCart(product: Product){
     this.cartService.addProduct({ "productId": product.productId, "cartId": this.cartService.getCart().cartId ,  "quantity": 1, "price": product.unitPrice}).subscribe(
       data => {
+        this.cartService.getProducts();
         let sb = this.snackBar.open("Producto añadido","Ver carrito", {
           duration: 2000,
         });

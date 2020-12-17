@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 import { CartService } from '../services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderService } from '../services/order.service';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -15,7 +17,7 @@ export class OrderComponent implements OnInit {
   post: any = "";
   total: number = 0;
   address: string = "";
-  constructor(private formBuilder: FormBuilder, public cartService: CartService, private dialog: MatDialog, private checkoutService: OrderService) {}
+  constructor(private router: Router,private formBuilder: FormBuilder, public cartService: CartService, private dialog: MatDialog, private checkoutService: OrderService) {}
   
   ngOnInit() {
     this.createForm();
@@ -106,7 +108,15 @@ export class OrderComponent implements OnInit {
       "cartId":this.cartService.getCart().cartId, 
       "username":localStorage.getItem("user"),
       "deliveryBoy":"null",
-      "orderStatus":1 }).subscribe(data => {this.post = "Guardado con exito!!!";});
+      "orderStatus":1 }).subscribe(data => {
+        this.post = "Guardado con exito!!!";
+        this.cartService.createCart();
+        this.router.navigate(['/store'])
+        .then(() => {
+          window.location.reload();
+        });
+      });
+
   }
   close(){
     this.dialog.closeAll();
