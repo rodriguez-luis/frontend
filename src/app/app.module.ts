@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     ProductComponent,
     CartComponent,
     OrderComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ import { OrderComponent} from '../order/order.component';
 })
 export class CartComponent implements OnInit {
   total: number = 0;
-  displayedColumns: string[] = ['name', 'weight', 'symbol', 'product', 'details', 'position'];
+  displayedColumns: string[] = ['name', 'weight', 'symbol', 'product', 'details'];
   products: Product[] = [];
   constructor(public cartService: CartService , private sanitizer: DomSanitizer, private dialog: MatDialog, public productService: ProductService) { }
 

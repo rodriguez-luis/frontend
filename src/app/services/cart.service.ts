@@ -13,7 +13,7 @@ export class CartService {
   total: number = 0;
   cart:any;
   details:any;
-  
+  orderDetails: Product[]=[];
   constructor(private http: HttpClient) {
   }
   setCart(username: string){
@@ -29,6 +29,24 @@ export class CartService {
   }
   clear(){
     this.products = [];
+  }
+  selectDetails(cartId: number){
+    this.http.get<Details[]>(this.url+'details/'+cartId).subscribe(
+      details => {
+        this.details = details;
+        this.clear();
+        for (let detail of details){
+          this.http.get<Product>('http://localhost:8080/v1/product/'+detail.productId).subscribe(
+            product => this.orderDetails.push(product)
+          );
+        }
+      }
+    ); 
+  }
+  getDetails(cartId:number){
+    this.selectDetails(cartId);
+    return this.orderDetails;
+
   }
   requestProducts(){
     this.http.get<Details[]>(this.url+'details/'+this.cart.cartId).subscribe(
