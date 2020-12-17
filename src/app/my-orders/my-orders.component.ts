@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Order } from '../model/order';
+import { OrderDetailsComponent } from '../order-details/order-details.component';
+import { CartService } from '../services/cart.service';
 import { OrderService } from '../services/order.service';
 @Component({
   selector: 'app-my-orders',
@@ -9,7 +12,7 @@ import { OrderService } from '../services/order.service';
 export class MyOrdersComponent implements OnInit {
   orders: Order[]=[];
   displayedColumns = ['date', 'total', 'details'];
-  constructor(public orderService: OrderService) { }
+  constructor(public orderService: OrderService, public cartService: CartService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getOrders();
@@ -19,6 +22,9 @@ export class MyOrdersComponent implements OnInit {
     this.orders = this.orderService.getOrders();
   }
   details(cartId:number){
-    alert("ga");
+    this.cartService.selectDetails(cartId);
+    const dialogRef = this.dialog.open(OrderDetailsComponent,{
+      width: '720px',disableClose: false
+    });
   }
 }

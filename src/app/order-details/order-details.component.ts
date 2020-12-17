@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Product} from '../model/product';
 import { DomSanitizer } from "@angular/platform-browser"
 import { CartService } from '../services/cart.service';
@@ -23,7 +24,7 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   getProducts (){
-    this.products = this.cartService.getProducts();
+    this.products = this.cartService.getDetails();
   }
   getTotal (){
     this.total = this.cartService.getTotal();

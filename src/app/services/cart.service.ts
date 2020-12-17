@@ -43,10 +43,8 @@ export class CartService {
       }
     ); 
   }
-  getDetails(cartId:number){
-    this.selectDetails(cartId);
+  getDetails(){
     return this.orderDetails;
-
   }
   requestProducts(){
     this.http.get<Details[]>(this.url+'details/'+this.cart.cartId).subscribe(
