@@ -34,6 +34,7 @@ export class CartService {
     this.http.get<Details[]>(this.url+'details/'+this.cart.cartId).subscribe(
       details => {
         this.details = details;
+        this.clear();
         for (let detail of details){
           this.http.get<Product>('http://localhost:8080/v1/product/'+detail.productId).subscribe(
             product => this.products.push(product)
