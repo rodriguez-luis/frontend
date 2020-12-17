@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { StoreComponent } from './store/store.component';
 import { ProductComponent } from './product/product.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { ProductComponent } from './product/product.component';
     NavbarComponent,
     LoginComponent,
     StoreComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { ProductComponent } from './product/product.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

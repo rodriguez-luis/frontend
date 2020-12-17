@@ -4,8 +4,8 @@
     <mat-icon class="icon" (click)="close()">close</mat-icon>
   </mat-toolbar>
 <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="20px grid" class="contenedor" fxLayoutAlign="center">
-<div class="img">
-    <img [src]="getImg()" alt="">
+<div >
+    <img [src]="getImg()" alt="" class="img">
 </div>
 <div class="details">
     <span><h2>Modelo: {{product.model}}</h2></span>
