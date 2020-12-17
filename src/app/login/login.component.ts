@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { User } from '../model/User';
+import { User } from '../model/user';
 import { SessionService } from '../services/session.service';
 
 @Component({

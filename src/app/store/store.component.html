@@ -1,1 +1,23 @@
-<p>store works!</p>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="20px grid" class="contenedor" fxLayoutAlign="flex-start">
+    <div fxFlex="25%" fxFlex.sm="50%" fxFlex.md="33" *ngFor="let product of products" >
+      <mat-card class="prod" >
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{product.productName}}</mat-card-title>
+          <mat-card-subtitle>{{product.model}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="getSantizeUrl(product.img)" alt="Fotografia de muestra" class="image" (click)="alert(product)">
+        <mat-card-content align="center">
+          <h3>
+            {{product.model}}
+          </h3>
+          <h2>
+            {{product.unitPrice | currency}}
+          </h2>
+        </mat-card-content>
+        <div align="center">
+          <button mat-raised-button color="primary" (click)="addToCart(product)" >Añadir al carrito</button>
+        </div>
+      </mat-card>
+  </div>
+  </div>

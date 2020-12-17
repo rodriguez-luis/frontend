@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
-import { Product} from '../model/Product';
+import { Product} from '../model/product';
 import { DomSanitizer } from "@angular/platform-browser"
 import { CartService } from '../services/cart.service';
 import { ProductComponent } from '../product/product.component';
