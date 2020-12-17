@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { User } from '../model/User';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +10,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  user:any;
+  username:string = "";
+  password:string = "";
+  constructor(public sessionService: SessionService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
+  }
+  getUser(){
+    return this.sessionService.getUser(this.username).subscribe(us => this.user = us);
+  }
+  onSubmit(){
+    this.getUser();
+    if (this.user.password == this.password){
+      localStorage.setItem("type",this.user.privilege.toString());
+      window.location.reload();
+    }else{
+      alert("user y/o password incorrectos");
+    }
   }
 
 }
