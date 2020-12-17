@@ -24,13 +24,15 @@ export class ProductComponent implements OnInit {
     this.dialog.closeAll();
   }
   addToCart(product: Product){
-    this.cartService.addProduct(product);
-    let sb = this.snackBar.open("Producto añadido","Ver carrito", {
-      duration: 2000,
-    });
-    sb.onAction().subscribe(() => {
-      this.dialog.closeAll(); 
-      this.router.navigateByUrl('/cart')
-    });
+    this.cartService.addProduct({ "productId": product.productId, "cartId": this.cartService.getCart().cartId ,  "quantity": 1, "price": product.unitPrice}).subscribe(
+      data => {
+        let sb = this.snackBar.open("Producto añadido","Ver carrito", {
+          duration: 2000,
+        });
+        sb.onAction().subscribe(() => {
+          this.dialog.closeAll(); 
+          this.router.navigateByUrl('/cart')
+      });}
+    );
   }
 }

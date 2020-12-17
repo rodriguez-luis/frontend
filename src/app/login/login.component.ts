@@ -10,7 +10,6 @@ import { SessionService } from '../services/session.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user:any;
   username:string = "";
   password:string = "";
   constructor(public sessionService: SessionService, private dialog: MatDialog, private router: Router) { }
@@ -18,16 +17,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   getUser(){
-    return this.sessionService.getUser(this.username).subscribe(us => this.user = us);
+    return this.sessionService.getUser(this.username).subscribe(user => {
+      if (user.password == this.password){
+        this.sessionService.setSession(user);
+        this.router.navigateByUrl("/store");
+        window.location.reload();
+      }else{
+        alert("user y/o password incorrectos");
+      }
+    });
   }
   onSubmit(){
     this.getUser();
-    if (this.user.password == this.password){
-      this.sessionService.setSession(this.user);
-      window.location.reload();
-    }else{
-      alert("user y/o password incorrectos");
-    }
   }
-
 }

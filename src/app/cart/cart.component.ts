@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
   products: Product[] = [];
   constructor(public cartService: CartService , private sanitizer: DomSanitizer, private dialog: MatDialog, public productService: ProductService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.getProducts();
     this.getTotal();
   }
