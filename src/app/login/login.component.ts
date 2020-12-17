@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.getUser();
     if (this.user.password == this.password){
-      localStorage.setItem("type",this.user.privilege.toString());
+      this.sessionService.setSession(this.user);
       window.location.reload();
     }else{
       alert("user y/o password incorrectos");

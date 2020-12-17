@@ -9,21 +9,14 @@ import { User } from '../model/User';
 })
 export class SessionService {
   url: string = 'http://localhost:8080/v1/user/';
-  currentUser: any;
   constructor(private http: HttpClient) { }
 
   getUser(username:string): Observable<User> {
     return this.http.get<User>(this.url+username);
   }
 
-  getCurrentUser(): User {
-    return this.currentUser;
-  }
-
   setSession(user:User):void{
     localStorage.setItem("user",user.username);
     localStorage.setItem("type",user.privilege.toString());
-    this.currentUser = user; 
   }
-
 }
